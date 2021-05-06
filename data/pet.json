@@ -1,0 +1,18 @@
+{
+  "id": 4224,
+  "category": {
+    "id": 10,
+    "name": "dog"
+  },
+  "name": "Manolo",
+  "photoUrls": [
+    "string"
+  ],
+  "tags": [
+    {
+      "id": 20,
+      "name": "adoption"
+    }
+  ],
+  "status": "available"
+}
