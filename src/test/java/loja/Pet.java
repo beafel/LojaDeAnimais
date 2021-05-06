@@ -21,7 +21,9 @@ public class Pet {
         incluirPet();
         consultarPet();
         alterarPet();
+        consultarPet();
         excluirPet();
+
     }
 
 
@@ -44,7 +46,7 @@ public class Pet {
                 .log().all()                            // Gerar um log completo da resposta
                 .statusCode(200)                        // Validou o código de status da requisição como 200
                 // .body("code", is(200))               // Valida o code como 200
-                .body("id", is(4224))         // Validou a tag id com o conteúdo esperado
+                .body("id", is(10))         // Validou a tag id com o conteúdo esperado
                 .body("name", is("Manolo"))   // Validou a tag nome como Garfield
                 .body("tags.name", contains("adoption")) // Validou a tag Name filha da tag Tags
         ;
@@ -54,7 +56,7 @@ public class Pet {
     // Reach or Research / Get
     @Test
     public void consultarPet(){
-        String petId = "4201";
+        String petId = "4224";
 
         given()                                             // Dado que
                 .contentType("application/json")            // Tipo de conteúdo da requisição
@@ -64,8 +66,8 @@ public class Pet {
                 .then()                                     // Entao
                 .log().all()                                // Mostrar tudo que foi recebido
                 .statusCode(200)                            // Validou que a operação foi realizada
-                .body("name", is("Garfield"))     // Validou o nome do pet
-                .body("category.name", is("cat")) // Validou a espécie
+                .body("name", is("Manolo"))     // Validou o nome do pet
+                .body("category.name", is("dog")) // Validou a espécie
         ;
     }
 
@@ -86,7 +88,7 @@ public class Pet {
                 .then()
                 .log().all()
                 .statusCode(200)
-                .body("name", is("Garfield"))
+                .body("name", is("Manolo"))
                 .body("status", is("adopted"))
         ;
 
@@ -95,7 +97,7 @@ public class Pet {
     // Delete / Delete
     @Test
     public void excluirPet(){
-        String petId = "4201";
+        String petId = "4224";
 
         given()                                         // Dado que
                 .contentType("application/json")        // Tipo de conteúdo da requisição
@@ -108,7 +110,6 @@ public class Pet {
                 .body("code", is(200))
                 .body("message",is(petId))
         ;
-
     }
 
     // Login
