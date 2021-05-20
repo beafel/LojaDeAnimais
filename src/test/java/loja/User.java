@@ -25,7 +25,7 @@ public class User {
         removerUser();
     }
 
-    @Test
+    //@Test
     public void incluirUser() throws IOException {
 
         String jsonBody = lerJson("data/user.json");
@@ -41,13 +41,13 @@ public class User {
                 .statusCode(200)
                 .body("code", is(200))
                 .body("type", is("unknown"))
-                .body("message", is("5306"))
+                .body("message", is("5"))
         ;
 
         System.out.print("Executou o servico");
     }
 
-    @Test
+    //@Test
     public void consultarUser() {
 
         String username = "alicer";
@@ -60,7 +60,7 @@ public class User {
         .then()
                 .log().all()
                 .statusCode(200)
-                .body("id", is(5306))
+                .body("id", is(5))
                 .body("firstName", is("Alice"))
                 .body("lastName", is("Root"))
                 .body("email", is("alicert@petstore.com"))
@@ -68,7 +68,7 @@ public class User {
         System.out.println("Executou a consulta");
     }
 
-    @Test
+    //@Test
     public void alterarUsuario() throws IOException {
         String jsonBody = lerJson("data/userput.json");
         String username = "alicer";
@@ -84,11 +84,11 @@ public class User {
                 .statusCode(200)
                 .body("code", is(200))
                 .body("type", is("unknown"))
-                .body("message", is("5306"))
+                .body("message", is("5"))
         ;
     }
 
-    @Test
+    //@Test
     public void removerUser(){
 
         String username = "alicer";

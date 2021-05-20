@@ -23,7 +23,7 @@ public class Store {
 
     }
 
-    @Test
+    //@Test
     public void venderPet() throws IOException {
 
         String jsonBody = lerJson("data/order.json");
@@ -44,7 +44,7 @@ public class Store {
         ;
     }
 
-    @Test
+    //@Test
     public void consultarVendaPet() {
 
         String id = "6";
@@ -64,7 +64,7 @@ public class Store {
         ;
     }
 
-    @Test
+    //@Test
     public void removerUser(){
 
         String id = "6";

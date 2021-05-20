@@ -10,7 +10,6 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
 
 public class Pet {
-    public String tokenGeral; // variavel para receber o token
 
     public String lerJson(String caminhoJson) throws IOException {
         return new String(Files.readAllBytes(Paths.get(caminhoJson)));
@@ -28,7 +27,7 @@ public class Pet {
 
 
     // Create / Incluir / POST
-    @Test
+    //@Test
     public void incluirPet() throws IOException {
         //String tokenLocal = loginUser2();
         // Ler o conteúdo do arquivo pet.json
@@ -54,16 +53,16 @@ public class Pet {
     }
 
     // Reach or Research / Get
-    @Test
+    //@Test
     public void consultarPet(){
-        String petId = "4224";
+        String petId = "10";
 
-        given()                                             // Dado que
+        given()                                     // Pre-requisito ou pre-condicao
                 .contentType("application/json")            // Tipo de conteúdo da requisição
                 .log().all()                                // Mostrar tudo que foi enviado
-                .when()                                     // Quando
+        .when()                                     // Operacao em si
                 .get("https://petstore.swagger.io/v2/pet/" + petId) // Consulta pelo petId
-                .then()                                     // Entao
+        .then()                                     // Validacoes, o teste em si
                 .log().all()                                // Mostrar tudo que foi recebido
                 .statusCode(200)                            // Validou que a operação foi realizada
                 .body("name", is("Manolo"))     // Validou o nome do pet
@@ -72,7 +71,7 @@ public class Pet {
     }
 
     // Update / Put
-    @Test
+    //@Test
     public void alterarPet() throws IOException {
         // Ler o conteúdo do arquivo pet.json
         String jsonBody = lerJson("data/petput.json");
@@ -95,9 +94,9 @@ public class Pet {
     }
 
     // Delete / Delete
-    @Test
+    //@Test
     public void excluirPet(){
-        String petId = "4224";
+        String petId = "10";
 
         given()                                         // Dado que
                 .contentType("application/json")        // Tipo de conteúdo da requisição
@@ -110,53 +109,5 @@ public class Pet {
                 .body("code", is(200))
                 .body("message",is(petId))
         ;
-    }
-
-    // Login
-    @Test
-    public void loginUser(){
-        // public String loginUser(){
-
-        String token =
-                given()                                     // Dado que
-                        .contentType("application/json")    // Tipo de conteúdo da requisição
-                        .log().all()                        // Mostrar tudo que foi enviado
-                        .when()
-                        .get("https://petstore.swagger.io/v2/user/login?username=charlie&password=brown")
-                        .then()
-                        .log().all()
-                        .statusCode(200)
-                        .body("message", containsString("logged in user session:"))
-                        .extract()
-                        .path("message")
-                ;
-        tokenGeral = token.substring(23);                   // separa o token da frase
-        System.out.println("O token valido eh " + tokenGeral);
-        //return tokenGeral;
-    }
-
-    @Test
-    public void sempreMetodo(){
-        loginUser2();
-    }
-
-    public String loginUser2(){
-
-        String token =
-                given()                                      // Dado que
-                        .contentType("application/json")     // Tipo de conteúdo da requisição
-                        .log().all()                         // Mostrar tudo que foi enviado
-                        .when()
-                        .get("https://petstore.swagger.io/v2/user/login?username=charlie&password=brown")
-                        .then()
-                        .log().all()
-                        .statusCode(200)
-                        .body("message", containsString("logged in user session:"))
-                        .extract()
-                        .path("message")
-                ;
-        String tokenGeral2 = token.substring(23); // separa o token da frase
-        System.out.println("O token valido eh " + tokenGeral2);
-        return tokenGeral2;
     }
 }
